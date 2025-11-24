@@ -1,11 +1,10 @@
 <?php
 session_start();
 require 'vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
 
-$client_id = $_ENV['DISCORD_CLIENT_ID'];
-$redirect_uri = $_ENV['DISCORD_REDIRECT_URI'];
+// Usar getenv() no lugar do dotenv
+$client_id = getenv('DISCORD_CLIENT_ID');
+$redirect_uri = getenv('DISCORD_REDIRECT_URI');
 ?>
 <!DOCTYPE html>
 <html lang="en">

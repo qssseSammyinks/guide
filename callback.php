@@ -4,15 +4,16 @@ require 'vendor/autoload.php';
 use GuzzleHttp\Client as HttpClient;
 use MongoDB\Client as MongoClient;
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
-
-$client_id = $_ENV['DISCORD_CLIENT_ID'];
-$client_secret = $_ENV['DISCORD_CLIENT_SECRET'];
-$redirect_uri = $_ENV['DISCORD_REDIRECT_URI'];
-$bot_token = $_ENV['BOT_TOKEN'];
-$guild_id = $_ENV['GUILD_ID'];
-$staff_role_id = $_ENV['STAFF_ROLE_ID'];
+// Substituindo $_ENV por getenv()
+$client_id = getenv('DISCORD_CLIENT_ID');
+$client_secret = getenv('DISCORD_CLIENT_SECRET');
+$redirect_uri = getenv('DISCORD_REDIRECT_URI');
+$bot_token = getenv('BOT_TOKEN');
+$guild_id = getenv('GUILD_ID');
+$staff_role_id = getenv('STAFF_ROLE_ID');
+$mongo_uri = getenv('MONGO_URI');
+$mongo_db = getenv('MONGO_DB');
+$mongo_collection = getenv('MONGO_COLLECTION');
 
 if (!isset($_GET['code'])) die('No code provided');
 
@@ -51,8 +52,8 @@ if (!in_array($staff_role_id, $member['roles'])) {
 }
 
 // Salva no MongoDB
-$mongo = new MongoClient($_ENV['MONGO_URI']);
-$collection = $mongo->selectDatabase($_ENV['MONGO_DB'])->selectCollection($_ENV['MONGO_COLLECTION']);
+$mongo = new MongoClient($mongo_uri);
+$collection = $mongo->selectDatabase($mongo_db)->selectCollection($mongo_collection);
 $collection->updateOne(
     ['id' => $user['id']],
     ['$set' => ['username' => $user['username'], 'discriminator' => $user['discriminator']]],

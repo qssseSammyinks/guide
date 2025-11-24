@@ -1,0 +1,86 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Container centralizado */
+.container {
+    max-width: 500px;
+    margin: 100px auto;
+    text-align: center;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Títulos */
+h1 {
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+/* Mensagem de manutenção */
+.maintenance {
+    margin-bottom: 30px;
+    color: #ff4c4c;
+    font-weight: bold;
+}
+
+/* Botões */
+.btn {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* Botão voltar */
+.btn {
+    background-color: #5865F2; /* Discord blue */
+    color: white;
+}
+
+.btn:hover {
+    background-color: #4752c4;
+}
+
+/* Botões de tema */
+.theme-btn {
+    background-color: #999;
+    color: white;
+}
+
+.theme-btn:hover {
+    background-color: #666;
+}
+
+/* Temas */
+body.light {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+body.dark {
+    background-color: #1e1e1e;
+    color: #f5f5f5;
+}
+
+/* Botões em temas escuros/claro */
+body.dark .btn {
+    color: white;
+}
+
+body.dark .theme-btn {
+    background-color: #444;
+}
+
+body.light .theme-btn {
+    background-color: #ccc;
+    color: #333;
+}

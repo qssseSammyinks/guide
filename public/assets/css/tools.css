@@ -1,0 +1,153 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body.light {
+    background: #f0f2f5;
+    color: #222;
+    transition: background 0.3s, color 0.3s;
+}
+
+body.dark {
+    background: #1f1f2e;
+    color: #f5f5f5;
+    transition: background 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.header-right {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Theme & back buttons */
+.theme-buttons .btn, .back {
+    padding: 8px 16px;
+    border-radius: 50px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.theme-buttons .btn {
+    background: linear-gradient(45deg, #6c63ff, #a18cff, #6c63ff);
+    background-size: 200% 200%;
+}
+.theme-buttons .btn:hover { animation: gradientShift 3s ease infinite; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
+
+.back {
+    background: linear-gradient(45deg, #ff6b6b, #ff8787, #ff6b6b);
+    background-size: 200% 200%;
+}
+.back:hover { animation: gradientShiftBack 3s ease infinite; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
+
+@keyframes gradientShift { 0% {background-position:0% 50%;} 50% {background-position:100% 50%;} 100% {background-position:0% 50%;} }
+@keyframes gradientShiftBack { 0% {background-position:0% 50%;} 50% {background-position:100% 50%;} 100% {background-position:0% 50%;} }
+
+.tools-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #6c63ff;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.tool-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* Botões compactos */
+.tool-btn {
+    background: linear-gradient(45deg, #6c63ff, #a18cff, #6c63ff);
+    background-size: 200% 200%;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 18px; /* bem menor */
+    border-radius: 12px;
+    font-size: 0.95rem; /* menor */
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    flex: 1 1 140px; /* menor largura */
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Hover efeito */
+.tool-btn:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+    animation: gradientShift 3s ease infinite;
+}
+
+/* Tooltip */
+.tool-btn .tooltip {
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.85);
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+.tool-btn:hover .tooltip {
+    opacity: 1;
+    bottom: 120%;
+}
+
+/* Dark mode overrides */
+body.dark .theme-buttons .btn,
+body.dark .tool-btn { background: linear-gradient(45deg, #9a7dff, #bba8ff, #9a7dff); color: #1f1f2e; }
+body.dark .back { background: linear-gradient(45deg, #ff8787, #ffa5a5, #ff8787); color: #1f1f2e; }
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .tool-buttons { flex-direction: column; gap: 12px; }
+    .tool-btn { width: 100%; }
+}

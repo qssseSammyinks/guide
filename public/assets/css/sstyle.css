@@ -1,0 +1,57 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Corpo da página */
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #7289da, #99aab5);
+    color: #fff;
+}
+
+/* Container central */
+.login-container {
+    text-align: center;
+    background-color: rgba(0,0,0,0.6);
+    padding: 50px 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* Título */
+.login-container h1 {
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+}
+
+/* Botão do Discord */
+.login-btn {
+    display: inline-block;
+    background-color: #5865F2;
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.login-btn:hover {
+    background-color: #4752c4;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Mensagem de boas-vindas */
+.welcome {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}

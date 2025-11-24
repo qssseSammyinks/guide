@@ -1,0 +1,131 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Temas */
+body.light {
+    background-color: #eef2f7;
+    color: #222;
+}
+
+body.dark {
+    background-color: #121212;
+    color: #f0f0f0;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+body.light .btn {
+    background-color: #fff;
+    color: #222;
+    border: 1px solid #ccc;
+}
+
+body.dark .btn {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+    border: 1px solid #555;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* Permissions Cards Grid */
+.permissions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+/* Card padrão */
+.perm-card {
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+body.dark .perm-card {
+    background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+}
+
+.perm-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.2);
+}
+
+/* Títulos */
+.perm-card h2 {
+    margin-bottom: 12px;
+    font-size: 1.3em;
+}
+
+/* Lista de permissões */
+.perm-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.perm-card ul li {
+    margin-bottom: 8px;
+    padding-left: 18px;
+    position: relative;
+}
+
+/* Ícone de marcador */
+.perm-card ul li::before {
+    content: "✔️";
+    position: absolute;
+    left: 0;
+}
+
+/* Gradientes e cores por equipe */
+.perm-card.owner { background: linear-gradient(135deg, #ff6b6b, #ff8787); color: #fff; }
+.perm-card.executive { background: linear-gradient(135deg, #34ace0, #33d9b2); color: #fff; }
+.perm-card.manager { background: linear-gradient(135deg, #2e86de, #54a0ff); color: #fff; }
+.perm-card.admin { background: linear-gradient(135deg, #8395a7, #576574); color: #fff; }
+.perm-card.dev { background: linear-gradient(135deg, #6f1e51, #a29bfe); color: #fff; }
+.perm-card.mod { background: linear-gradient(135deg, #1dd1a1, #10ac84); color: #fff; }
+.perm-card.helper { background: linear-gradient(135deg, #f368e0, #ff9ff3); color: #fff; }
+.perm-card.tester { background: linear-gradient(135deg, #54a0ff, #2e86de); color: #fff; }
+.perm-card.staff { background: linear-gradient(135deg, #576574, #8395a7); color: #fff; }

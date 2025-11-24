@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dashboard — Windows Style</title>
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- CSS SEPARADO -->
+  <link rel="stylesheet" href="/public/assets/css/style.css">
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app">
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
+      <div class="brand">
+        <div class="logo">
+          <div class="logo-mark">F&FP</div>
+          <div class="logo-text">F&FP</div>
+        </div>
+      </div>
+
+      <div class="search">
+        <input id="menuSearch" type="search" placeholder="Search menu...">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+
+      <nav class="menu">
+        <ul id="menuList">
+          <li><a href="../../index.php"><i class="fa-solid fa-home"></i><span>Home</span></a></li>
+          <li><a href="/public/r/guides.php"><i class="fa-solid fa-book-open"></i><span>Guides</span></a></li>
+          <li><a href="/public/r/tools.php"><i class="fa-solid fa-tools"></i><span>Tools</span></a></li>
+          <li><a href="/public/r/training.php"><i class="fa-solid fa-dumbbell"></i><span>Training</span></a></li>
+          <li><a href="/public/r/user.php"><i class="fa-solid fa-user"></i><span>User</span></a></li>
+          <li><a href="/public/r/info.php"><i class="fa-solid fa-circle-info"></i><span>Info</span></a></li>
+          <li><a href="/public/r/roles.php"><i class="fa-solid fa-user-tag"></i><span>Roles</span></a></li>
+          <li><a href="/public/r/permissions.php"><i class="fa-solid fa-lock"></i><span>Permissions</span></a></li>
+          <li><a href="/public/r/annoucements.php"><i class="fa-solid fa-cog"></i><span>Annoucements</span></a></li>
+          <li><a href="/public/r/analytics.php"><i class="fa-solid fa-chart-line"></i><span>Analytics</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button id="signOut" class="btn-ghost"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main id="main" class="main">
+      <header class="topbar">
+        <div class="left">
+          <button id="toggleBtn" class="icon-btn"><i class="fa-solid fa-bars"></i></button>
+          <h1 class="page-title">Dashboard</h1>
+        </div>
+
+        <div class="right">
+          <button class="icon-btn" aria-label="Notifications"><i class="fa-solid fa-bell"></i><span class="badge">1</span></button>
+
+          <!-- THEME BUTTON -->
+          <button id="themeToggle" class="icon-btn" title="Theme">
+            <i class="fa-solid fa-circle-half-stroke"></i>
+          </button>
+
+          <button class="icon-btn" aria-label="Account"><i class="fa-solid fa-user"></i></button>
+        </div>
+      </header>
+
+      <section class="content">
+        <div class="glass welcome">
+          <h2>Welcome to the Dashboard</h2>
+          <p class="muted">Overview and metrics.</p>
+        </div>
+
+        <!-- GRID: chart + chat -->
+        <div class="cards-grid">
+          <!-- Chart card -->
+          <article class="card glass chart-card">
+            <div class="card-head">
+              <h3>Server Statistics</h3>
+            </div>
+            <div class="card-body">
+              <canvas id="statsChart" height="220"></canvas>
+            </div>
+          </article>
+
+          <!-- Chat card -->
+          <article class="card glass chat-card">
+            <div class="card-head">
+              <h3>Chat / Presence</h3>
+            </div>
+
+            <div class="card-body chat-panel">
+              <div class="chat-tabs" role="tablist">
+                <button class="tab active" data-tab="bots" role="tab">🤖 Bots</button>
+                <button class="tab" data-tab="members" role="tab">👤 Members</button>
+                <button class="tab" data-tab="staff" role="tab">🛡️ Staff</button>
+              </div>
+
+              <div class="chat-content" id="chatContent" aria-live="polite"></div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- SCRIPTS SEPARADOS -->
+  <script src="/public/assets/js/script.js"></script>
+  <script src="/public/assets/js/chat.js"></script>
+  <script src="/public/assets/js/charts.js"></script>
+</body>
+</html>

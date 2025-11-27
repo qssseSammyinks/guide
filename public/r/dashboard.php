@@ -3,7 +3,7 @@
 $waitTime = 5;
 
 // Página de destino
-$destination = "../dashboard/dashboard.php"; 
+$destination = "../dashboard/index.php"; 
 ?>
 
 <!DOCTYPE html>

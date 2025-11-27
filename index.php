@@ -2,9 +2,20 @@
 session_start();
 require 'vendor/autoload.php';
 
-// Usar getenv() no lugar do dotenv
+// ENV
 $client_id = getenv('DISCORD_CLIENT_ID');
 $redirect_uri = getenv('DISCORD_REDIRECT_URI');
+
+// Segurança: caso falte variável, evita erro silencioso
+if (!$client_id || !$redirect_uri) {
+    die("Missing environment variables: DISCORD_CLIENT_ID or DISCORD_REDIRECT_URI");
+}
+
+// Se já estiver logado, opcional: redirecionar para dashboard
+if (isset($_SESSION['user'])) {
+    header("Location: /public/r/dashboard.php");
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,13 +27,19 @@ $redirect_uri = getenv('DISCORD_REDIRECT_URI');
 </head>
 <body>
     <div class="login-container">
-        <?php if(isset($_SESSION['user'])): ?>
-            <div class="welcome">Hello, <?= $_SESSION['user']['username'] ?>!</div>
-            <a class="login-btn" href="logout.php">Logout</a>
-        <?php else: ?>
-            <h1>Login with Discord</h1>
-            <a class="login-btn" href="https://discord.com/api/oauth2/authorize?client_id=<?= $client_id ?>&redirect_uri=<?= urlencode($redirect_uri) ?>&response_type=code&scope=identify">Login with Discord</a>
-        <?php endif; ?>
+
+        <h1>Login With Discord</h1>
+
+        <a class="login-btn"
+            href="https://discord.com/api/oauth2/authorize?
+            client_id=<?= htmlspecialchars($client_id) ?>&
+            redirect_uri=<?= urlencode($redirect_uri) ?>&
+            response_type=code&
+            scope=identify">
+
+            Login with Discord
+        </a>
+
     </div>
 </body>
 </html>

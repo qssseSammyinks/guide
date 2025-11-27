@@ -1,41 +1,37 @@
 <?php
-// Sempre iniciar sessão
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+session_start();
 
-/* ================================
-   1. VERIFICAR SE ESTÁ LOGADO
-================================ */
-if (!isset($_SESSION['user'])) {
-    header("Location: login.php");
+$SESSION_DURATION = 1800; // 30 min
+$SESSION_REGEN = 600;     // Regenerar ID a cada 10 min
+
+// Não logado → login
+if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
+    header("Location: /login.php");
     exit;
 }
 
-/* ================================
-   2. VERIFICAR SE É STAFF
-   (com base no que salvamos no callback)
-================================ */
-if (!isset($_SESSION['user']['is_staff']) || $_SESSION['user']['is_staff'] !== true) {
-    die("Acesso negado. Você não possui permissão.");
-}
-
-/* ================================
-   3. (OPCIONAL)
-   Segurança extra: expirar sessão após X minutos
-================================ */
-$session_lifetime = 3600; // 1 hora
-
-if (!isset($_SESSION['last_activity'])) {
-    $_SESSION['last_activity'] = time();
-} elseif (time() - $_SESSION['last_activity'] > $session_lifetime) {
-    session_unset();
+// Proteção por IP
+if ($_SESSION['IP'] !== $_SERVER['REMOTE_ADDR']) {
     session_destroy();
-    die("Sessão expirada. Faça login novamente.");
+    die("Sessão inválida (IP mudou)");
 }
 
-$_SESSION['last_activity'] = time();
+// Proteção por navegador
+if ($_SESSION['UA'] !== $_SERVER['HTTP_USER_AGENT']) {
+    session_destroy();
+    die("Sessão inválida (Navegador mudou)");
+}
 
-/* ================================
-   Pronto: acesso liberado
-================================ */
+// Expiração por inatividade
+if (time() - $_SESSION['LAST_ACTIVITY'] > $SESSION_DURATION) {
+    session_destroy();
+    die("Sessão expirada, faça login novamente.");
+} else {
+    $_SESSION['LAST_ACTIVITY'] = time();
+}
+
+// Regenerar session ID para evitar hijack
+if (time() - $_SESSION['SESSION_CREATED'] > $SESSION_REGEN) {
+    session_regenerate_id(true);
+    $_SESSION['SESSION_CREATED'] = time();
+}

@@ -31,12 +31,7 @@ if (isset($_SESSION['user'])) {
         <h1>Login With Discord</h1>
 
         <a class="login-btn"
-            href="https://discord.com/api/oauth2/authorize?
-            client_id=<?= htmlspecialchars($client_id) ?>&
-            redirect_uri=<?= urlencode($redirect_uri) ?>&
-            response_type=code&
-            scope=identify">
-
+            href="https://discord.com/api/oauth2/authorize?client_id=<?= htmlspecialchars($client_id) ?>&redirect_uri=<?= urlencode($redirect_uri) ?>&response_type=code&scope=identify">
             Login with Discord
         </a>
 
